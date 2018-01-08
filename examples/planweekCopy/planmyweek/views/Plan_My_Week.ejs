@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Plan My Week</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/Stylesheet.css"
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="./assets/functions.js"></script>
+<script src="./index.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+<script>
+  // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyCEkN48w_iNNaDXuHH24CZ340XEtrg7dAI",
+      authDomain: "soft352-1ff69.firebaseapp.com",
+      databaseURL: "https://soft352-1ff69.firebaseio.com",
+      projectId: "soft352-1ff69",
+      storageBucket: "soft352-1ff69.appspot.com",
+      messagingSenderId: "984599840123"
+    };
+    firebase.initializeApp(config);
+
+
+  console.log("connected to firebase successfully")
+</script>
+
+
+
+</head>
+<body>
+
+    <div class="jumbotron text-center">
+        <h1>Plan My Week!</h1>
+        <div class="dayDiv" id="Monday">
+          <div class="dayTitle">
+            Monday
+          </div>
+          <div id="MondayTasks">
+
+          </div>
+        </div><div class="dayDiv" id="Tuesday">
+          <div class="dayTitle">
+            Tuesday
+          </div>
+        </div><div class="dayDiv" id="Wednesday">
+          <div class="dayTitle">
+            Wednesday
+          </div>
+        </div><div class="dayDiv" id="Thursday">
+          <div class="dayTitle">
+            Thursday
+          </div>
+        </div><div class="dayDiv" id="Friday">
+          <div class="dayTitle">
+            Friday
+          </div>
+        </div><div class="dayDiv" id="Saturday">
+          <div class="dayTitle">
+            Saturday
+          </div>
+        </div><div class="dayDiv" id="Sunday">
+          <div class="dayTitle">
+            Sunday
+          </div>
+        </div>
+
+
+        <br />
+        <br />
+    <div class="boxed" id="addTasksDiv">
+        Add Task:
+        <input type="text" id="taskTxt" />
+        <select id="priority">
+          <option value ="high">High</option>
+          <option value ="medium">Medium</option>
+          <option value ="low">Low</option>
+        </select>
+        <select id="weekday">
+          <option value ="1">Monday</option>
+          <option value ="2">Tuesday</option>
+          <option value ="3">Wednesday</option>
+          <option value ="4">Thursday</option>
+          <option value ="5">Friday</option>
+          <option value ="6">Saturday</option>
+          <option value ="7">Sunday</option>
+        </select>
+        <button id="addTaskBtn" onclick="createTask();">Add Task</button>
+    </div>
+      </div>
+
+</body>
+<footer>
+  <br />
+  <button id="signOut" onclick="firebaseSignOut();"> Sign Out </button>
+</html>

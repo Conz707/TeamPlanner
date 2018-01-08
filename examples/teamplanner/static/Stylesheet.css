@@ -1,0 +1,51 @@
+
+
+.dayDiv {
+  padding: 0px;
+  display: inline-block;
+  width: calc(100% / 7);
+  height: 90%;
+
+}
+
+.dayTitle {
+  font-size: 24px;
+  text-align: center;
+}
+
+#Task {
+  width: 80%;
+  background-color: blue;
+}
+
+#Monday {
+  background-color: #c5c5c5;
+  border: 1px black solid;
+}
+#Tuesday {
+  background-color: #cccccc;
+  border-top: 1px black solid;
+  border-bottom: 1px black solid;
+}
+#Wednesday {
+  background-color: #d5d5d5;
+  border: 1px black solid;
+}
+#Thursday {
+  background-color: #dddddd;
+  border-top: 1px black solid;
+  border-bottom: 1px black solid;
+}
+#Friday {
+  background-color: #e5e5e5;
+  border: 1px black solid;
+}
+#Saturday {
+  background-color: #eeeeee;
+  border-top: 1px black solid;
+  border-bottom: 1px black solid;
+}
+#Sunday {
+  background-color: #f5f5f5;
+  border: 1px black solid;
+}
