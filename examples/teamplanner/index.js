@@ -70,16 +70,22 @@ io.on('connection', function (socket) {
       	});     //END register
 
         socket.on('addTask', function(data){
-          var taskId = 2; //NOTE temp hard coded taskID
-            console.log("received task data: " + " task " + data.task + " priority " + data.priority + " weekday " + data.weekday)
-    //        firebase.database().writeUserData(taskId, data.task, data.priority, data.weekday)
-              firebase.database().ref('ProjectTasks/' + taskId).set({
+        var addTaskPackage = {
                 task: data.task ,
                 priority: data.priority ,
-                weekday: data.weekday
-                });
-
-        socket.emit("addTaskSuccessful");
+                date: data.date
+                };
+                var addTaskQuery = con.query("INSERT INTO tasks SET?", addTaskPackage, function(error, result) {
+                  if(error) throw error;
+                    });
+                      socket.emit("addTaskSuccessful");
+                  });
       });//END addTask
 
+      socket.on('loadTasks' function(){
+                var loadTaskQuery = con.query("SELECT * FROM tasks)", function(error, result) {
+                  if(error) throw error;
+                  socket.emit("displayLoadedTasks", result);
+              })
+            })
     });  //END IO.ON

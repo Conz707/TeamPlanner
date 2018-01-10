@@ -13,41 +13,17 @@
 <body>
 
     <div class="jumbotron text-center">
-        <h1>Plan The Week!</h1>
-        <div class="dayDiv" id="Monday">
-          <div class="dayTitle">
-            Monday
+        <h1>Events!</h1>
+        <div class="eventDiv" id="Monday">
+          <div class="eventTitle">
           </div>
-          <div id="MondayEvents">
+          <div id="Events">
+      <div><h2> Kick a dog </h2> <h3> 02/06/2018</h3> </div> <hr>
+      <div><h2> Kick a dog </h2> <h3> 02/06/2018</h3> </div> <hr>
 
-          </div>
-        </div><div class="dayDiv" id="Tuesday">
-          <div class="dayTitle">
-            Tuesday
-          </div>
-        </div><div class="dayDiv" id="Wednesday">
-          <div class="dayTitle">
-            Wednesday
-          </div>
-        </div><div class="dayDiv" id="Thursday">
-          <div class="dayTitle">
-            Thursday
-          </div>
-        </div><div class="dayDiv" id="Friday">
-          <div class="dayTitle">
-            Friday
-          </div>
-        </div><div class="dayDiv" id="Saturday">
-          <div class="dayTitle">
-            Saturday
-          </div>
-        </div><div class="dayDiv" id="Sunday">
-          <div class="dayTitle">
-            Sunday
-          </div>
         </div>
 
-
+</div>
         <br />
         <br />
     <div class="boxed" id="addEventsDiv">
@@ -58,18 +34,12 @@
           <option value ="medium">Medium</option>
           <option value ="low">Low</option>
         </select>
-        <select id="weekday">
-          <option value ="1">Monday</option>
-          <option value ="2">Tuesday</option>
-          <option value ="3">Wednesday</option>
-          <option value ="4">Thursday</option>
-          <option value ="5">Friday</option>
-          <option value ="6">Saturday</option>
-          <option value ="7">Sunday</option>
-        </select>
+          <input id="datePicker" type="date">
         <button id="addEventBtn">Add Event</button>
-    </div>
+
+        </div>
       </div>
+
 
       <script src="/socket.io/socket.io.js"></script>
         <script src="main.js"></script>
