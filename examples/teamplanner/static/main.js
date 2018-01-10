@@ -1,13 +1,13 @@
 var socket = io();
 
 $( "#signInBtn" ).click(function() {
-  var $email = $("#emailTxt").val();
+  var $user = $("#userTxt").val();
   var $password = $('#passwordTxt').val();
   var userDetailsPackage = {    //try and capture this outside of the buttons
-    email: $email,
+    user: $user,
     password: $password,
   }
-  console.log($email);
+  console.log($user);
   console.log($password);
   socket.emit('signIn', userDetailsPackage);
 });
@@ -15,19 +15,21 @@ $( "#signInBtn" ).click(function() {
 
 $( "#signOutBtn" ).click(function() {
 socket.emit('signOut');
+console.log("sign out clicked");
 });
 
 
 $( "#registerBtn" ).click(function() {
-var $email = $("#emailTxt").val();
+var $user = $("#userTxt").val();
 var $password = $('#passwordTxt').val();
 var userDetailsPackage = {    //try and capture this outside of the buttons
-  email: $email,
+  user: $user,
   password: $password,
 }
-console.log($email);
+console.log($user);
 console.log($password);
 socket.emit('register', userDetailsPackage);
+console.log("emitted register");
 });
 
 $( "#addTaskBtn" ).click(function() {
@@ -53,7 +55,7 @@ socket.on('signInSuccessful', function(){
 
 socket.on('signInUnsuccessful', function(){
 console.log("unsuccessful sign in");
-alert("Incorrect email or password. Please try again.");
+alert("Incorrect user or password. Please try again.");
 });
 
 
@@ -69,7 +71,7 @@ socket.on('registerSuccessful', function(){
 });
 
 socket.on('registerUnsuccessful', function(){
-          alert("Ensure email in correct format, unused and password is at least 6 characters");
+          alert("Username in use - Please try another");
 });
 
 socket.on('addTaskSuccessful', function(){
