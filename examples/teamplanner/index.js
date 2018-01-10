@@ -14,6 +14,7 @@ var con = mysql.createConnection({
 database: "teamplanner",
 host: "localhost",
 user: "root",
+dateStrings: 'date'
 });
 
 server.listen(port, function () {
@@ -32,7 +33,7 @@ io.on('connection', function (socket) {
 
   socket.on('signIn', function(data){
     //i spent an hour trying to fix this and found out my table was "users" not "user" :)
-    var checkUserAndPassQuery = con.query("SELECT COUNT (*) AS count From users WHERE user='"+ data.user +"' && password = '"+ data.password +"'", function (error, result){
+    var checkUserAndPassQuery = con.query("SELECT COUNT (*) AS count From users WHERE user= '"+ data.user +"' && password = '"+ data.password +"'", function (error, result){
       const count = result[0].count;
       if(error) throw error;
         if (count != 0){   //if row count is 0 then a username and password is not found in the database
@@ -42,7 +43,12 @@ io.on('connection', function (socket) {
           console.log("Sign in Unsuccessful");
           socket.emit('signInUnsuccessful');
         }
+
+
+
     });
+
+
   }); //END signIn
 
         socket.on('signOut', function(){
@@ -69,23 +75,28 @@ io.on('connection', function (socket) {
           console.log("trying to return register emit");
       	});     //END register
 
-        socket.on('addTask', function(data){
-        var addTaskPackage = {
-                task: data.task ,
+
+        socket.on('addEvent', function(data){
+        var addEventPackage = {
+                Event: data.event ,
                 priority: data.priority ,
                 date: data.date
                 };
-                var addTaskQuery = con.query("INSERT INTO tasks SET?", addTaskPackage, function(error, result) {
+                var addEventQuery = con.query("INSERT INTO events SET?", addEventPackage, function(error, result) {
                   if(error) throw error;
                     });
-                      socket.emit("addTaskSuccessful");
-                  });
-      });//END addTask
+                      socket.emit("addEventSuccessful");
+                  });//END addEvent
 
-      socket.on('loadTasks' function(){
-                var loadTaskQuery = con.query("SELECT * FROM tasks)", function(error, result) {
-                  if(error) throw error;
-                  socket.emit("displayLoadedTasks", result);
-              })
-            })
+                  socket.on('refreshEvents', function(){
+                    setInterval(function(){
+                    var addEventQuery = con.query("SELECT Event, Priority, Date FROM events", function(error, result) {
+                    if(error) throw error;
+                    console.log("firing back")
+                      socket.emit("displayEvents", result);
+                    })
+                  }, 1000/60);
+                }); //END refreshEvents
+
+
     });  //END IO.ON

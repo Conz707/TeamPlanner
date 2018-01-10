@@ -32,26 +32,36 @@ socket.emit('register', userDetailsPackage);
 console.log("emitted register");
 });
 
-$( "#addTaskBtn" ).click(function() {
-var $task = $("#taskTxt").val();
+$( "#refreshEvents" ).click(function() {
+socket.emit("refreshEvents");
+});
+
+$( "#addEventBtn" ).click(function() {
+var $event = $("#eventTxt").val();
 var $priority = $("#priority option:selected").text();
 var $date = $("#datePicker").val();
-var createTaskPackage = {    //try and capture this outside of the buttons
-  task: $task,
+
+
+if ($event == "" || $priority == "" || $date == "") {
+  alert("Please ensure all event fields filled in.");
+} else if(confirm('Are you sure you would like to add this event?')) {
+var createEventPackage = {    //try and capture this outside of the buttons
+  event: $event,
   priority: $priority,
   date: $date,
 }
-console.log($task);
+console.log($event);
 console.log($priority);
 console.log($date);
-socket.emit('addTask', createTaskPackage);
+socket.emit('addEvent', createEventPackage);
+}
 });
 
 
 socket.on('signInSuccessful', function(){
   console.log("successful sign in");
   window.location.href="landingPage.html";
-  socket.emit('loadTasks');
+
 });
 
 socket.on('signInUnsuccessful', function(){
@@ -75,12 +85,19 @@ socket.on('registerUnsuccessful', function(){
           alert("Username in use - Please try another");
 });
 
-socket.on('addTaskSuccessful', function(){
-          alert("Task added successfully!");
+socket.on('addEventSuccessful', function(){
+          alert("Event added successfully!");
 });
 
-socket.on('loadTasks' function(data){
-  data.forEach(function (data){
-    document.getElementById('Events').innerHTML = "<div><h2>" + data.name + "</h2><h3>" + data.date + "</h3></div><hr>";
-  })
+socket.on('displayEvents', function(result){
+  console.log("catching emit");
+  document.getElementById('Events').innerHTML = "";
+  result.forEach(function (result){
+    console.log("trying to log result");
+
+    if (document.getElementById('Events').innerHTML != null){
+
+      document.getElementById('Events').innerHTML += "<div><h2>" + result.Event + "</h2><h3>" + result.Priority + "</h3><h3>" + result.Date + "</h3></div><hr>"
+}
+   })
 });
