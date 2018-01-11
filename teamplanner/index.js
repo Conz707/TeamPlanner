@@ -90,9 +90,20 @@ io.on('connection', function (socket) {
 
                   socket.on('refreshEvents', function(){
                     setInterval(function(){
-                    var addEventQuery = con.query("SELECT Event, Priority, Date FROM events", function(error, result) {
+
+                      var displayLowPriorityEventsQuery = con.query("SELECT Event, Date FROM events WHERE Date >= CURDATE() AND Priority = 'Low'", function(error, result) {
+                      if(error) throw error;
+                        socket.emit("displayLowPriorityEvents", result);
+                      })
+
+                    var displayMediumPriorityEventsQuery = con.query("SELECT Event, Date FROM events WHERE Date >= CURDATE() AND Priority = 'Medium'", function(error, result) {
                     if(error) throw error;
-                      socket.emit("displayEvents", result);
+                      socket.emit("displayMediumPriorityEvents", result);
+                    })
+var displayHighPriorityEventsQuery = con.query("SELECT Event, Date FROM events WHERE Date >= CURDATE() AND Priority = 'High'", function(error, result) {
+          //          var displayHighPriorityEventsQuery = con.query("SELECT Event, Date FROM events WHERE Priority = 'High'", function(error, result) {
+                    if(error) throw error;
+                      socket.emit("displayHighPriorityEvents", result);
                     })
                   }, 1000/60);
                 }); //END refreshEvents

@@ -17,9 +17,15 @@
         <div class="eventDiv" id="Monday">
           <div class="eventTitle">
           </div>
-<div id="Events"> </div>
-    <div class="boxed" id="addEventsDiv">
-        Add Event:
+<div id="Events">
+<div class="divColumn" id=lowPriorityEvents> <h2>Low Priority</h2> </div>
+<div class="divColumn" id=mediumPriorityEvents> <h2>Medium Priority</h2></div>
+<div class="divColumn" id=highPriorityEvents> <h2>High Priority</h2></div>
+<br>
+</div>
+</div>
+<div>
+        <p style="text-decoration: underline; font-size: 18px">Add Event:</p>
         <input type="text" id="eventTxt" />
         <select id="priority">
           <option value ="high">High</option>
@@ -29,6 +35,7 @@
           <input id="datePicker" type="date">
         <button id="addEventBtn">Add Event</button>
         </div>
+      </div>
       </div>
 
 

@@ -88,12 +88,30 @@ socket.on('addEventSuccessful', function(){
           alert("Event added successfully!");
 });
 
-socket.on('displayEvents', function(result){
-  document.getElementById('Events').innerHTML = "";
+socket.on('displayLowPriorityEvents', function(result){
+  document.getElementById('lowPriorityEvents').innerHTML = "<h2>Low Priority</h2>";
   result.forEach(function (result){
-    if (document.getElementById('Events').innerHTML != null){
-      document.getElementById('Events').innerHTML += "<div><h2>" + result.Event + "</h2><h3>" + result.Priority + "</h3><h3>" + result.Date + "</h3></div><hr>"
-}
+    if (document.getElementById('lowPriorityEvents').innerHTML != null){
+      document.getElementById('lowPriorityEvents').innerHTML += "<div class='boxed'><h2>" + result.Event + "</h2><h3>" + result.Date + "</h3></div>"
+      }
+   })
+});
+
+socket.on('displayMediumPriorityEvents', function(result){
+  document.getElementById('mediumPriorityEvents').innerHTML = "<h2>Medium Priority</h2>";
+  result.forEach(function (result){
+    if (document.getElementById('mediumPriorityEvents').innerHTML != null){
+      document.getElementById('mediumPriorityEvents').innerHTML += "<div class='boxed'><h2>" + result.Event + "</h2><h3>" + result.Date + "</h3></div>"
+      }
+   })
+});
+
+socket.on('displayHighPriorityEvents', function(result){
+  document.getElementById('highPriorityEvents').innerHTML = "<h2>High Priority</h2>";
+  result.forEach(function (result){
+    if (document.getElementById('highPriorityEvents').innerHTML != null){
+      document.getElementById('highPriorityEvents').innerHTML += "<div class='boxed'><h2>" + result.Event + "</h2><h3>" + result.Date + "</h3></div>"
+      }
    })
 });
 
