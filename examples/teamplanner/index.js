@@ -92,7 +92,6 @@ io.on('connection', function (socket) {
                     setInterval(function(){
                     var addEventQuery = con.query("SELECT Event, Priority, Date FROM events", function(error, result) {
                     if(error) throw error;
-                    console.log("firing back")
                       socket.emit("displayEvents", result);
                     })
                   }, 1000/60);

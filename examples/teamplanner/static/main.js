@@ -61,7 +61,6 @@ socket.emit('addEvent', createEventPackage);
 socket.on('signInSuccessful', function(){
   console.log("successful sign in");
   window.location.href="landingPage.html";
-
 });
 
 socket.on('signInUnsuccessful', function(){
@@ -90,14 +89,14 @@ socket.on('addEventSuccessful', function(){
 });
 
 socket.on('displayEvents', function(result){
-  console.log("catching emit");
   document.getElementById('Events').innerHTML = "";
   result.forEach(function (result){
-    console.log("trying to log result");
-
     if (document.getElementById('Events').innerHTML != null){
-
       document.getElementById('Events').innerHTML += "<div><h2>" + result.Event + "</h2><h3>" + result.Priority + "</h3><h3>" + result.Date + "</h3></div><hr>"
 }
    })
 });
+
+function startRefreshingEvents(){   //need to start refreshing div once page has finished loading
+    socket.emit('refreshEvents');
+}
