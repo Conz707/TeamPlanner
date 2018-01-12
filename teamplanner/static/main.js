@@ -3,7 +3,7 @@ var socket = io();
 $( "#signInBtn" ).click(function() {
   var $user = $("#userTxt").val();
   var $password = $('#passwordTxt').val();
-  var userDetailsPackage = {    //try and capture this outside of the buttons
+  var userDetailsPackage = {    
     user: $user,
     password: $password,
   }

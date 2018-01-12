@@ -100,7 +100,7 @@ io.on('connection', function (socket) {
                     if(error) throw error;
                       socket.emit("displayMediumPriorityEvents", result);
                     })
-var displayHighPriorityEventsQuery = con.query("SELECT Event, Date FROM events WHERE Date >= CURDATE() AND Priority = 'High'", function(error, result) {
+                    var displayHighPriorityEventsQuery = con.query("SELECT Event, Date FROM events WHERE Date >= CURDATE() AND Priority = 'High'", function(error, result) {
                     if(error) throw error;
                       socket.emit("displayHighPriorityEvents", result);
                     })
